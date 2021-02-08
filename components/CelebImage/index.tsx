@@ -27,21 +27,14 @@ const CelebImage: React.FC<CelebImageProps> = ({
     alias,
     price,
     craft,
-    imageUrl,
-    id,
-    token
+    imageUrl
   } = props
   const size = large ? { width: '47%' } : null
   const { navigate } = useNavigation()
   const onPressed = () =>
     navigate<Routes>('Celeb', {
       data: {
-        id,
-        alias,
-        craft,
-        imageUrl,
-        token: token || '',
-        price
+        ...props
       }
     })
   return (
@@ -55,6 +48,7 @@ const CelebImage: React.FC<CelebImageProps> = ({
         source={{
           uri: imageUrl
         }}
+        onError={({ nativeEvent: { error } }) => console.log(error)}
       />
       <LinearGradient
         colors={[
@@ -65,7 +59,7 @@ const CelebImage: React.FC<CelebImageProps> = ({
         <View style={styles.textContainer}>
           <View style={styles.dets}>
             <Text
-              numberOfLines={1}
+              numberOfLines={3}
               style={styles.celebName}>
               {alias}
             </Text>
@@ -103,8 +97,9 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flexDirection: 'row',
+    width: '100%',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'flex-end'
   },
   celebName: {
     color: 'white',
@@ -117,12 +112,15 @@ const styles = StyleSheet.create({
     fontSize: 11
   },
   price: {
-    fontSize: 11,
+    fontSize: 14,
     fontWeight: 'bold',
-    color: theme.colors.primary
+    color: theme.colors.primary,
+    width: '40%',
+    justifyContent: 'flex-end',
+    textAlign: 'right'
   },
   dets: {
-    width: '75%',
+    width: '60%',
     paddingRight: 5
   }
 })

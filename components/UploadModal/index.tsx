@@ -52,7 +52,7 @@ const UploadModal = () => {
   const isProgress = type === 'progress'
   return (
     <View style={[styles.progressContainer]}>
-      <Paragraph>
+      <Paragraph black>
         {label}
       </Paragraph>
       {isProgress ? (

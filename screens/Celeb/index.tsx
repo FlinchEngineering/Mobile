@@ -7,7 +7,8 @@ import {
   Image,
   ImageBackground,
   StyleSheet,
-  View
+  View,
+  ScrollView
 } from 'react-native'
 import { FAB } from 'react-native-paper'
 import {
@@ -31,27 +32,23 @@ const CelebScreen: React.FC = () => {
   } = useRoute<CelebScreenRouteProp>()
   const { data } = params
   const {
-    id,
     alias,
     bio,
     craft,
     imageUrl,
     price,
-    token
+    samples
   } = data
+
+  console.log(samples)
+
+  const hasSamples = samples?.length > 0
   const onBook = () =>
     navigate<Routes>('Book', {
-      data: {
-        id,
-        price,
-        alias,
-        imageUrl,
-        token
-      }
+      data
     })
-  console.log(price)
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <ImageBackground
         source={{ uri: imageUrl }}
         style={styles.image}
@@ -79,13 +76,24 @@ const CelebScreen: React.FC = () => {
         <View style={styles.bio}>
           <Paragraph black>{bio}</Paragraph>
         </View>
+        {hasSamples && <View>
+          {samples.map((sample, i) => {
+            return <Image
+              key={i}
+              source={{ uri: sample }}
+              height={100}
+              width={100}
+              style={{ backgroundColor: 'red' }}
+            />
+          })}
+        </View>}
         <View style={styles.price}>
           <AltMainLabel style={styles.price}>
             {HelperService.parseToMoney(price)}
           </AltMainLabel>
         </View>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 

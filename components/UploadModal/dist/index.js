@@ -35,7 +35,7 @@ var UploadModal = function () {
     };
     var isProgress = type === 'progress';
     return (react_1["default"].createElement(react_native_1.View, { style: [styles.progressContainer] },
-        react_1["default"].createElement(styledComponents_1.Paragraph, null, label),
+        react_1["default"].createElement(styledComponents_1.Paragraph, { black: true }, label),
         isProgress ? (react_1["default"].createElement(react_native_paper_1.ProgressBar, { progress: progress, style: [styles.progressBar], color: theme_1.theme.colors.primary })) : (react_1["default"].createElement(react_native_paper_1.ActivityIndicator, { animating: true, size: "large", color: theme_1.theme.colors.primary })),
         react_1["default"].createElement(react_native_1.View, { style: [styles.btns] }, showBtns && (react_1["default"].createElement(react_1["default"].Fragment, null,
             react_1["default"].createElement(react_native_paper_1.Button, { color: theme_1.theme.colors.primary, onPress: onHideUpload }, "Hide"),

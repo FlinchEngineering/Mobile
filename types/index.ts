@@ -4,19 +4,19 @@ import firebase from 'firebase'
 export type Currency = 'NGN' | 'GHS' | '$'
 
 export type User = {
-  id: string
-  displayName: string
-  email: string
-  imageUrl: string
-  loggedIn: boolean
-  profileUpdated: boolean
+  id: string;
+  displayName: string;
+  email: string;
+  imageUrl: string;
+  loggedIn: boolean;
+  profileUpdated: boolean;
   celebrity: {
-    isCeleb: boolean
-    id: string
-    data?: Celeb
-  }
-  role: UserRole
-  token: string
+    isCeleb: boolean;
+    id: string;
+    data?: Celeb;
+  },
+  role: UserRole;
+  token: string;
 } | null
 
 export type UserRole = 'celebrity' | 'user'
@@ -229,6 +229,7 @@ export interface Celeb {
   objectID?: string
   role?: 'celebrity' | 'user'
   token?: string
+  samples?: string[]
 }
 
 export interface Price {
